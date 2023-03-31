@@ -1,0 +1,18 @@
+server:
+  port: 8021
+spring:
+  application:
+    name: stock-service
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+      discovery:
+        username: nacos
+        password: nacos
+        secret-key: SecretKey012345678901234567890123456789012345678901234567890123456789
+        namespace: public
+        ephemeral: true     # 实例生命周期   true：临时实例（服务死了就从nacos剔除）   false: 永久实例（服务器宕机， nacos不会删除服务）
+
+
+
+

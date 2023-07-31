@@ -7,6 +7,9 @@
         <module>stock</module>
         <module>stock-nacos</module>
         <module>order-nacos</module>
+        <module>order-openFeign</module>
+        <module>product-nacos</module>
+
     </modules>
 
     <groupId>com.example</groupId>
@@ -58,6 +61,10 @@
                 <version>${spring.cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-logging</artifactId>
             </dependency>
 
 

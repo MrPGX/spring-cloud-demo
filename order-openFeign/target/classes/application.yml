@@ -1,5 +1,5 @@
 server:
-  port: 8020
+  port: 8030
 spring:
   application:
     name: order-service
@@ -18,3 +18,7 @@ spring:
 #stock-service:
 #  ribbon:
 #    NFLoadBalancerRuleClasslane: com.alibaba.cloud.nacos.ribbon.NacosRule
+logging:
+  level:
+    org.springframework: INFO
+    com.pgx.order.feign: DEBUG

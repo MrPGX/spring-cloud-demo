@@ -9,6 +9,7 @@
         <module>order-nacos</module>
         <module>order-openFeign</module>
         <module>product-nacos</module>
+        <module>nacos-config</module>
 
     </modules>
 

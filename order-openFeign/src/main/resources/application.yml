@@ -1,5 +1,5 @@
 server:
-  port: 8030
+  port: 8031
 spring:
   application:
     name: order-service
@@ -11,14 +11,8 @@ spring:
         password: nacos
         namespace: public
         secret-key: SecretKey012345678901234567890123456789012345678901234567890123456789
-#        group: DEFAULT_GROUP7
-#        ephemeral: false     # 是否临时实例
 
 ##nacos访问策略调整 方式二 (两种方式 二选一就行)
 #stock-service:
 #  ribbon:
 #    NFLoadBalancerRuleClasslane: com.alibaba.cloud.nacos.ribbon.NacosRule
-logging:
-  level:
-    org.springframework: INFO
-    com.pgx.order.feign: DEBUG

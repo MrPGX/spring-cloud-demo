@@ -25,6 +25,7 @@ import java.util.Map;
 public class DemoController {
 
     private static final String RESOURCE_NAME = "hello";
+    private static final String RESOURCE_NAME_ANNOTATE = "annotate";
 
     private static final String DEGRADE_RESOURCE_NAME = "degradeRule";
 
@@ -54,6 +55,37 @@ public class DemoController {
 
     }
 
+    /**
+     * valne = 资源名称，blockHandler指定流控处理方法，fallback指定捕获方法发生异常时的方法 【且blockHandler优先级大于fallback】
+     * @param message
+     * @return
+     */
+    @RequestMapping("/byAnnotate")
+    @ResponseBody
+    @SentinelResource(value = RESOURCE_NAME_ANNOTATE,blockHandler = "getByAnnotateHandler",fallback = "byAnnotateExceptionHandler")
+    public Map<String, String> byAnnotate(String message){
+        int a = 10/0;
+        Map resultMap = new HashMap<String, String>();
+        resultMap.put("code","0");
+        resultMap.put("description","访问成功！");
+        return resultMap;
+    }
+
+    public Map<String, String> getByAnnotateHandler(String message ,BlockException ex){
+        Map resultMap = new HashMap<String, String>();
+        resultMap.put("code","-1");
+        resultMap.put("description","流量控制");
+        log.error(message + " exception = " + ex.getMessage());
+        return resultMap;
+    }
+    public Map<String,String> byAnnotateExceptionHandler(String message,Throwable ex){
+        Map resultMap = new HashMap<String, String>();
+        resultMap.put("code","-1");
+        resultMap.put("description","发生异常");
+        log.error(message + " exception = " + ex.getMessage());
+        return resultMap;
+    }
+
     @PostConstruct
     private static void initFlowRules(){
         // 流控规则队列
@@ -67,16 +99,19 @@ public class DemoController {
         // 一秒内可请求数
         flowRule.setCount(1);
         rules.add(flowRule);
+
+        // 流控规则
+        FlowRule flowRule2 = new FlowRule();
+        // 需要流控的资源
+        flowRule2.setResource(RESOURCE_NAME_ANNOTATE);
+        // 流控的规则
+        flowRule2.setGrade(RuleConstant.FLOW_GRADE_QPS);
+        // 一秒内可请求数
+        flowRule2.setCount(1);
+        rules.add(flowRule2);
         FlowRuleManager.loadRules(rules);
 
-/*        List<FlowRule> rules = new ArrayList<>();
-        FlowRule rule = new FlowRule();
-        rule.setResource("HelloWorld");
-// set limit qps to 20
-        rule.setCount(1);
-        rule.setGrade(RuleConstant.FLOW_GRADE_QPS);
-        rules.add(rule);
-        FlowRuleManager.loadRules(rules);*/
+
 
 
     }

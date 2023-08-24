@@ -32,7 +32,8 @@
             <artifactId>lombok</artifactId>
             <version>1.18.18</version>
         </dependency>
-        <!--sentinel-source-->
+
+        <!--sentinel-source，以注解的形式使用sentinel-->
         <dependency>
             <groupId>com.alibaba.csp</groupId>
             <artifactId>sentinel-annotation-aspectj</artifactId>

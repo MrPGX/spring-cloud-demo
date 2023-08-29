@@ -1,0 +1,11 @@
+
+server:
+  port: 8031
+spring:
+  application:
+    name: order-sentinel
+  cloud:
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8080
+      web-context-unify: false      # 维护调用树链路（true:不维护，false:维护）

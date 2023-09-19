@@ -1,0 +1,15 @@
+server:
+  port: 8032
+spring:
+  application:
+    name: order-openFeign-nacos-sentinel
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+      discovery:
+        username: nacos
+        password: nacos
+        namespace: public
+        secret-key: SecretKey012345678901234567890123456789012345678901234567890123456789
+
+
